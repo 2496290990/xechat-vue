@@ -1,0 +1,634 @@
+{
+    "聊天": {
+        "action": "CHAT",
+        "body": {
+            "content": "xechat-vscode插件测试消息",
+            "msgType": "TEXT",
+            "toUsers": []
+        }
+    },
+    "登录":  {
+        "action": "LOGIN",
+        "body": {
+            "username": "username",
+            "status": "FISHING",
+            "reconnected": false,
+            "pluginVersion": "",
+            "token": "",
+            "uuid": "123456",
+            "platform": "WEB"
+        }
+    },
+    "reveiceMsg": {
+        "user": {
+            "uuid": "B0-25-AA-56-0B-18",
+            "id": "0242acfffe110003-00000006-0000027a-3ecb59ac8129afd8-ea3dd649",
+            "username": "迪迦",
+            "status": "FISHING",
+            "ip": "60.214.237.217",
+            "region": {
+                "ip": "60.214.237.217",
+                "country": "中国",
+                "province": "山东省",
+                "city": "东营市",
+                "isp": "联通"
+            },
+            "role": "USER",
+            "permit": 3,
+            "platform": "IDEA",
+            "clientVersion": "1.6.6-beta"
+        },
+        "body": {
+            "content": "123",
+            "msgType": "TEXT"
+        },
+        "type": "USER",
+        "time": "09/12 12:37"
+    },
+    "history Msg": {
+        "body": {
+            "msgList": [
+                {
+                    "body": "[沪·[东方明猪]osl]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:11"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000346-a7e06a046d2625be-6d552d14",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "1",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:11"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "1",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:12"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000346-a7e06a046d2625be-6d552d14",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "1",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:12"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "1+1=",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:12"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000346-a7e06a046d2625be-6d552d14",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "idea怎么使用clash的代理啊？",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:12"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "@[东方明猪]osl  clash服务是不是要部署在外网的服务器上?",
+                        "msgType": "TEXT",
+                        "toUsers": [
+                            "[东方明猪]osl",
+                            "季伯腾"
+                        ]
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:13"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "然后国内服务器代理到这个外网服务器上,然后就可以访问外网了是不是?",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:14"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "是不是这个原理?",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:14"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000346-a7e06a046d2625be-6d552d14",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "vpn吧",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:15"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000346-a7e06a046d2625be-6d552d14",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "我不知道",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:15"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "之前安装过,可惜我安装的clash服务是在内网上面,其他服务器代理了,但没效果",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:16"
+                },
+                {
+                    "body": "[沪·Restart]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:17"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "我直接在外网服务器安装了openVPN",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:17"
+                },
+                {
+                    "user": {
+                        "uuid": "00-50-56-C0-00-08",
+                        "id": "0242acfffe110003-00000006-0000031f-259281dd70c840eb-67aaab8e",
+                        "username": "季伯腾",
+                        "status": "FISHING",
+                        "ip": "60.173.247.143",
+                        "region": {
+                            "ip": "60.173.247.143",
+                            "country": "中国",
+                            "province": "安徽省",
+                            "city": "合肥市",
+                            "isp": "电信"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.6-beta"
+                    },
+                    "body": {
+                        "content": "openVPN好用",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:17"
+                },
+                {
+                    "body": "[美国·white]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:19"
+                },
+                {
+                    "body": "[沪·[东方明猪]osl]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:19"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000349-8714db85643e8515-66293dab",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "1",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:20"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000349-8714db85643e8515-66293dab",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "怎么还是沪",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:20"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-00000349-8714db85643e8515-66293dab",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "我ip都变了",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:20"
+                },
+                {
+                    "body": "[沪·[东方明猪]osl]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:21"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-0000034a-691c164fc03d450f-9884ce94",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "1",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:21"
+                },
+                {
+                    "body": "[苏·UE888A]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:22"
+                },
+                {
+                    "body": "[美国·white]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:23"
+                },
+                {
+                    "body": "[沪·[东方明猪]osl]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:23"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-0000034d-f1a36db0f833161f-b8173aa8",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "1",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:23"
+                },
+                {
+                    "user": {
+                        "uuid": "a699774c-c525-4f00-9c82-5ae2d4aedbfd",
+                        "id": "0242acfffe110003-00000006-0000034d-f1a36db0f833161f-b8173aa8",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "@white 你怎么整的",
+                        "msgType": "TEXT",
+                        "toUsers": [
+                            "[东方明猪]osl",
+                            "white"
+                        ]
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:24"
+                },
+                {
+                    "body": "[沪·[东方明猪]osl]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:24"
+                },
+                {
+                    "user": {
+                        "uuid": "2b48188d-6420-4d66-ad13-bcf83b611cde",
+                        "id": "0242acfffe110003-00000006-0000034e-e5700f2d17c2d7aa-1b2a43fa",
+                        "username": "[东方明猪]osl",
+                        "status": "FISHING",
+                        "ip": "220.196.193.82",
+                        "region": {
+                            "ip": "220.196.193.82",
+                            "country": "中国",
+                            "province": "上海",
+                            "city": "上海市",
+                            "isp": "联通"
+                        },
+                        "role": "USER",
+                        "permit": 3,
+                        "platform": "IDEA",
+                        "clientVersion": "1.6.5-beta"
+                    },
+                    "body": {
+                        "content": "。",
+                        "msgType": "TEXT"
+                    },
+                    "type": "USER",
+                    "time": "09/12 13:24"
+                },
+                {
+                    "body": "[浙·zuri]进入了鱼塘！",
+                    "type": "SYSTEM",
+                    "time": "09/12 13:25"
+                }
+            ]
+        },
+        "type": "HISTORY_MSG",
+        "time": "09/12 13:27"
+    }
+}
