@@ -630,5 +630,31 @@
         },
         "type": "HISTORY_MSG",
         "time": "09/12 13:27"
+    },
+    "imageMsg": {
+        "user": {
+            "uuid": "B0-25-AA-56-0B-18",
+            "id": "0242acfffe110003-00000006-00000545-d3e9eb1462c1b2e0-05341642",
+            "username": "mono",
+            "status": "FISHING",
+            "ip": "60.214.237.215",
+            "region": {
+                "ip": "60.214.237.215",
+                "country": "中国",
+                "province": "山东省",
+                "city": "东营市",
+                "isp": "联通"
+            },
+            "role": "USER",
+            "permit": 3,
+            "platform": "IDEA",
+            "clientVersion": "1.6.6-beta"
+        },
+        "body": {
+            "content": "9293389f-28ea-45ec-899f-da5d966dc044.png",
+            "msgType": "IMAGE"
+        },
+        "type": "USER",
+        "time": "09/12 16:33"
     }
 }

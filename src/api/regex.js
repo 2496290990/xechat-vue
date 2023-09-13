@@ -14,7 +14,9 @@ export function getlogin(content) {
     // 定义正则表达式
     // const regex = /#login\s+(\w+)\s+-s\s+(\d+)\s+-h\s+(\w+)\s+-p\s+(\d+)/;
     // const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+(\w+))?(?:\s+-p\s+(\d+))?/;
-    const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
+    // 不支持中文
+    // const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
+    const regex = /#login\s+([\u4e00-\u9fa5\w]+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
     const matches = content.match(regex);
 
     // 提取匹配的值
@@ -34,7 +36,8 @@ export function getlogin(content) {
     let data = {
         username,
         url: '',
-        errorMsg: ''
+        errorMsg: '',
+        imagePath: ''
     }
     if (isBlank(username)) {
         data.errorMsg = '用户名不允许为空;'
@@ -49,20 +52,24 @@ export function getlogin(content) {
         }
         const wsServer = serverList[serverIndex]
         data.url = `ws://${wsServer.ip}:${wsServer.port + 1}/xechat`
+        data.imagePath = `http://${wsServer.ip}:${wsServer.port + 1}/download/`
         return data
     }
     if (isBlank(host) && isBlank(port)) {
         console.log(`当前服务器地址为ws://localhost:1025/xechat`);
         data.url = 'ws://localhost:1025/xechat'
+        data.imagePath = `http://localhost:1025/download/`
         return data
     }
     if (isNotBlank(host)) {
         if (isNotBlank(port)) {
             console.log(`当前服务器地址为ws://${host}:${port}/xechat`);
             data.url = `ws://${host}:${port}/xechat`
+            data.imagePath = `http://${host}:${port}/download/`
         } else {
             console.log(`当前服务器地址为ws://${host}:1025/xechat`);
             data.url = `ws://${host}:1025/xechat`
+            data.imagePath = `http://${host}:1025/download/`
         }
         return data
     }
@@ -71,9 +78,11 @@ export function getlogin(content) {
         if (isNotBlank(host)) {
             console.log(`当前服务器地址为ws://${host}:${port}/xechat`);
             data.url = `ws://${host}:${port}/xechat`
+            data.imagePath = `http://${host}:${port}/download/`
         } else {
             console.log(`当前服务器地址为ws://localhost:${port}/xechat`);
             data.url = `ws://localhost:${port}/xechat`
+            data.imagePath = `http://localhost:${port}/download/`
         }
         return data
     }

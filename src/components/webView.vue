@@ -3,12 +3,12 @@
         <el-container>
             <el-main>
                 <Viewer
-                class='viewer'
-                :tabindex='2'
-                :sanitize='23'
-                :value='msg'
-                :plugins='plugins'
-                :locale='zhHans'
+                    class='viewer'
+                    :tabindex='2'
+                    :sanitize='23'
+                    :value='msg'
+                    :plugins='plugins'
+                    :locale='zhHans'
                 />
             </el-main>
             <el-footer>
@@ -54,7 +54,8 @@ export default {
             socket: null,
             chatMsg: '',
             username: '',
-            wsUrl: 'ws://localhost:1025/xechat'
+            wsUrl: 'ws://localhost:1025/xechat',
+            imagePath: 'http://localhost:1025/download/'
         }
     },
     created() {
@@ -84,6 +85,7 @@ export default {
                 }
                 this.wsUrl = loginData.url
                 this.username = loginData.username
+                this.imagePath = loginData.imagePath
                 this.connect()
                 console.log(this.socket);
                 this.doLogin()
@@ -94,7 +96,9 @@ export default {
                 return
             }
             if (inputMsg.startsWith('#exit')) {
-                console.log('exit');
+                this.socket.close()
+                this.msg += addNewLine('哎呦，你干嘛~~')
+                this.msg += addNewLine('已退出登录！')
                 return
             }
             if (inputMsg.startsWith('#clean')) {
@@ -160,6 +164,7 @@ export default {
                     this.singletonMsg(item)
                 }
             } else {
+                console.log(data)
                 this.singletonMsg(data)
             }
             
@@ -172,12 +177,16 @@ export default {
 
             if(data.type == 'USER') {
                 const body = data.body
-                this.msg += addNewLine(`${data.time}[${data.user.username}]: ${body.content}`)
+                let content = body.content
+                if (body.msgType == 'IMAGE') {
+                    content = `![${content}](${this.imagePath}${content})`
+                }
+                this.msg += addNewLine(`${data.time}[${data.user.region.city}:${data.user.region.isp} ${data.user.username}]: ${content}`)
                 if(body.toUsers != undefined && body.toUsers.length > 0) {
                     // todo
                     let atMe = body.toUsers.indexOf(this.username) != -1
                     if(atMe) {
-                        this.$alert(`${body.content}`, `${data.user.username}`, {
+                        this.$alert(`${content}`, `${data.user.username}`, {
                             dangerouslyUseHTMLString: true
                         });
                     }
@@ -204,7 +213,9 @@ export default {
 .el-main {
     background-color: #E9EEF3;
     color: #333;
-    text-align: center;
     line-height: 160px;
-  }
+}
+.viewer{
+    text-align: left;
+}
 </style>
