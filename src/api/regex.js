@@ -11,26 +11,20 @@ export function cmdHandler(content, that) {
 }
 
 export function getlogin(content) {
-    // 定义正则表达式
-    // const regex = /#login\s+(\w+)\s+-s\s+(\d+)\s+-h\s+(\w+)\s+-p\s+(\d+)/;
-    // const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+(\w+))?(?:\s+-p\s+(\d+))?/;
-    // 不支持中文
-    // const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
-    const regex = /#login\s+([\u4e00-\u9fa5\w]+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
-    const matches = content.match(regex);
-
+    // // 定义正则表达式
+    // // const regex = /#login\s+(\w+)\s+-s\s+(\d+)\s+-h\s+(\w+)\s+-p\s+(\d+)/;
+    // // const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+(\w+))?(?:\s+-p\s+(\d+))?/;
+    // // 不支持中文
+    // // const regex = /#login\s+(\w+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
+    // const regex = /#login\s+([\u4e00-\u9fa5\w]+)(?:\s+-s\s+(\d+))?(?:\s+-h\s+([\w.]+))?(?:\s+-p\s+(\d+))?/;
+    // const matches = content.match(regex);
+    const params = content.split(' ')
     // 提取匹配的值
-    let username = "";
-    let server = "";
-    let host = "";
-    let port = "";
+    let username = getParam(params, '#login');
+    let server = getParam(params, '-s');
+    let host = getParam(params, '-h');
+    let port = getParam(params, '-p');
 
-    if (matches) {
-        username = matches[1];
-        server = matches[2];
-        host = matches[3];
-        port = matches[4];
-    }
     // 输出结果
     console.log(`username=${username}, server=${server}, host=${host}, port=${port}`);
     let data = {
@@ -111,4 +105,12 @@ export function getServerList() {
         port: 1024
     })
     return serverList
+}
+
+export function getParam(params, param) {
+    let index = params.indexOf(param);
+    if (index !== -1) {
+        return params[index + 1];
+    }
+    return null;
 }

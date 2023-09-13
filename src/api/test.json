@@ -656,5 +656,27 @@
         },
         "type": "USER",
         "time": "09/12 16:33"
+    },
+    "inlineUsers": {
+        "body": {
+            "userList": [{
+                "uuid": "12345",
+                "id": "acde48fffe001122-00006cda-00000003-a9d6f66f4c23c34f-129eb8d3",
+                "username": "安凌毅",
+                "status": "FISHING",
+                "ip": "127.0.0.1",
+                "region": {
+                    "ip": "127.0.0.1",
+                    "country": "中国",
+                    "province": "浙江省",
+                    "city": "杭州市",
+                    "isp": "电信"
+                },
+                "role": "USER",
+                "permit": 3
+            }]
+        },
+        "type": "ONLINE_USERS",
+        "time": "09/02 13:16"
     }
 }

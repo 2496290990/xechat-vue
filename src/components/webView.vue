@@ -16,10 +16,15 @@
                 <el-button @click='doLogin'>doLogin</el-button>
                 <el-button @click='connect'>Reconnect</el-button>
                 <el-input 
-                    @keyup.enter.native='chatSend' 
+                    @keydown.enter.native="handleEnterKeyDown"
                     v-model='chatMsg'
                     style='margin-top: 10px;'
                 />
+                <el-tooltip effect="dark" :content="getHint()" placement="top" v-if="showTooltip">
+                    <div v-for="(item, index) in hintList" :key="index" :class="{ 'highlighted': index === highlightedIndex }" @click="fillInput(item)">
+                        {{ item }}
+                    </div>
+                </el-tooltip>
             </el-footer>
         </el-container>
     </div>
@@ -55,13 +60,56 @@ export default {
             chatMsg: '',
             username: '',
             wsUrl: 'ws://localhost:1025/xechat',
-            imagePath: 'http://localhost:1025/download/'
+            imagePath: 'http://localhost:1025/download/',
+            onlineUsers: [],
+            hintList: ['#login', '#exit'], // List of hints
+            showTooltip: false,
+            highlightedIndex: -1
         }
     },
     created() {
         this.showHelp()
     },
+    watch: {
+      inputValue(newVal) {
+        this.showTooltip = (newVal.startsWith('#') || newVal.indexOf('@') != -1) && !newVal.endsWith(' ')
+        if (newVal.indexOf('@') != -1) {
+            this.hintList = this.onlineUsers
+        }
+      }
+    },
     methods: {
+        handleEnterKeyDown(event) {
+            event.preventDefault();
+            console.log('Enter key down');
+            if (this.highlightedIndex !== -1) {
+                this.fillInput(this.hintList[this.highlightedIndex].split(' ')[0]);
+            }
+            if (!this.showTooltip && isNotBlank(this.chatMsg)) {
+                this.chatSend()
+            }
+        },
+        handleArrowUpKeyDown(event) {
+            event.preventDefault();
+            this.highlightedIndex = Math.min(this.hintList.length - 1, this.highlightedIndex + 1);
+        },
+        handleArrowUpKeyDonw(event) {
+            event.preventDefault();
+            this.highlightedIndex = Math.max(0, this.highlightedIndex - 1);
+        },
+        getHint() {
+            if (this.inputValue === '#') {
+                this.showTooltip = true;
+                return '';
+            }
+            this.showTooltip = false;
+            return '';
+        },
+        fillInput(item) {
+            this.inputValue = item;
+            this.showTooltip = false;
+            this.highlightedIndex = -1;
+        },
         showHelp() {
             this.msg +=  helpMd()
         },
@@ -174,7 +222,7 @@ export default {
             if(data.type == 'SYSTEM') {
                 this.msg += addNewLine(`**${data.time}【系统消息】${data.body}**`)
             }
-
+            // 处理用户消息
             if(data.type == 'USER') {
                 const body = data.body
                 let content = body.content
@@ -192,6 +240,12 @@ export default {
                     }
                 }
             }
+            // 处理在线用户消息
+            if (data.type == 'ONLINE_USERS') {
+                const userList = data.body.userList
+                userList.map(item => this.onlineUsers.push(item.username))
+                console.log('当前在线用户', this.onlineUsers)
+            }
         },
         sendMsg(sendMsg) {
             console.log(sendMsg, 'sendMsg');
@@ -204,8 +258,7 @@ export default {
             setInterval(() => {
                 that.sendMsg(data)
             }, 15000)
-        },
-
+        }
     }
 }
 </script>
@@ -217,5 +270,8 @@ export default {
 }
 .viewer{
     text-align: left;
+}
+.highlighted {
+  background-color: yellow;
 }
 </style>

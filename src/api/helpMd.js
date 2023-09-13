@@ -8,8 +8,6 @@ export function helpMd() {
 
 > Tips: "{ }"表示输入参数占位符，"[ ]"内的参数为可选参数，所有参数均以空格分隔。
 
--[X] test
-
 | 序号 | 命令        | 描述               | 状态 | 参数及示例                                                   |
 | ---- | ----------- | ------------------ | ---- | ------------------------------------------------------------ |
 | 1    | #login      | 登录               | ×    | 参数：#login {昵称}[-s {鱼塘编号 } -h {服务端IP} -p {服务端端口} -c (清理缓存)] |
@@ -63,5 +61,12 @@ export function getSysTitle(nickname) {
     return `
 **${dateStr} ${nickname} :**\n
     `
+}
+
+export function cmdTips() {
+    const hintTips = [
+        "#login {昵称}[-s {鱼塘编号 } -h {服务端IP} -p {服务端端口} -c (清理缓存) "
+    ]
+    return hintTips;
 }
 
