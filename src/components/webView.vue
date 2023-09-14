@@ -44,6 +44,7 @@ import { helpMd, serverList,getSysTitle } from '@/api/helpMd'
 import { getlogin } from '@/api/regex'
 import {isBlank, isNotBlank} from '@/util/str'
 import { chatJson, loginJson, addNewLine } from '@/api/msgHandler'
+import { generateSSQ, generateDLT } from '@/api/random'
 
 export default {
     name: 'webView',
@@ -64,7 +65,8 @@ export default {
             onlineUsers: [],
             hintList: ['#login', '#exit'], // List of hints
             showTooltip: false,
-            highlightedIndex: -1
+            highlightedIndex: -1,
+            imageList:[]
         }
     },
     created() {
@@ -156,6 +158,88 @@ export default {
                 this.msg += serverList()
                 return
             }
+            // 展示图片
+            if (inputMsg.startsWith('#showImage')) {
+                let params = inputMsg.split(' ')
+                // 直接输入 showImage 展示最后一条图片消息
+                if(params.length == 1) {
+                   const imageUrl = this.imageList[this.imageList.length - 1]
+                   this.msg += addNewLine(`![${imageUrl}](${imageUrl})`)
+                }
+                if(params.length > 1) {
+                    params = params.spice(1)
+                    for(let item of params) {
+                        if(item == 'last') {
+                            const imageUrl = this.imageList[this.imageList.length - 1]
+                            this.msg += addNewLine(`![${imageUrl}](${imageUrl})`)
+                        } else if (isNaN(item)) {
+                            this.msg += addNewLine(`索引错误`)
+                        } else {
+                            let index = Number(item)
+                            if(index < 0) {
+                                index = 0;
+                            }
+                            if(index >= this.imageList.length) {
+                                index = this.imageList.length - 1
+                            }
+                            const imageUrl = this.imageList[this.imageList.length - 1]
+                            this.msg += addNewLine(`![${imageUrl}](${imageUrl})`)
+                        }
+                    }
+
+                }
+            }
+            // 清空图片缓存
+            if (inputMsg.startsWith('#cleanImage')) {
+                this.imageList = []
+                this.msg += addNewLine('图片列表已清空')
+            }
+            // 随机双色球
+            if (inputMsg.startsWith('#showSSQ')) {
+                let params = inputMsg.split(' ')
+                let cycle = 1;
+                if (params.length == 1) {
+                    cycle = 1;
+                } else {
+                    let numStr = params[1]
+                    if (isNaN(numStr)) {
+                        cycle = 1
+                    } else {
+                        cycle = Number(numStr)
+                    }
+                }
+                for (let i = 1; i <= cycle; i++) {
+                    const data = generateSSQ()
+                    let chatMsg = ''
+                    chatMsg += addNewLine(`随机双色球结果:`)
+                    chatMsg += addNewLine(`红球：${data.redBalls} 蓝球 ${data.blueBall}`)
+                    this.sendMsg(chatJson(chatMsg))
+                }
+                this.msg += addNewLine(``)
+            }
+            // 随机双色球
+            if (inputMsg.startsWith('#showSSQ')) {
+                let params = inputMsg.split(' ')
+                let cycle = 1;
+                if (params.length == 1) {
+                    cycle = 1;
+                } else {
+                    let numStr = params[1]
+                    if (isNaN(numStr)) {
+                        cycle = 1
+                    } else {
+                        cycle = Number(numStr)
+                    }
+                }
+                for (let i = 1; i <= cycle; i++) {
+                    const data = generateDLT()
+                    let chatMsg = ''
+                    chatMsg += addNewLine(`随机双色球结果:`)
+                    chatMsg += addNewLine(`红球：${data.redBalls} 蓝球 ${data.blueBall}`)
+                    this.sendMsg(chatJson(chatMsg))
+                }
+                this.msg += addNewLine(``)
+            }
         },
         showSysMsg() {
             this.msg += getSysTitle('系统消息')
@@ -186,11 +270,18 @@ export default {
                 this.sendMsg(loginJson(loginName));
             }
         },
-        doChat() {
+        doChat(msg) {
+            let content = ''
+            if (isNotBlank(msg)) {
+                content = msg
+            }
+            if (isNotBlank(this.inputMsg)) {
+                content = this.inputMsg
+            }
             const data = {
                 'action': 'CHAT',
                 'body': {
-                    'content': this.inputMsg,
+                    'content': content,
                     'msgType': 'TEXT',
                     'toUsers': ['张三']
                 }
@@ -222,7 +313,11 @@ export default {
                 const body = data.body
                 let content = body.content
                 if (body.msgType == 'IMAGE') {
-                    content = `![${content}](${this.imagePath}${content})`
+                    const imageUrl = `${this.imagePath}${content}`
+                    this.imageList.push(imageUrl)
+                    // 防止有人发黄土
+                    // content = `![${content}](${this.imagePath}${content})`
+                    content = `图片消息谨慎打开:: 当前索引 ::${this.imageList.indexOf(imageUrl)} :: ${imageUrl}`
                 }
                 this.msg += addNewLine(`${data.time}[${data.user.region.city}:${data.user.region.isp} ${data.user.username}]: ${content}`)
                 if(body.toUsers != undefined && body.toUsers.length > 0) {

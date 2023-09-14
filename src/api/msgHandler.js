@@ -6,7 +6,6 @@ export function dataToJson(data) {
 
 export function addNewLine(msg) {
     return `
-
 ${msg}    
 `
 }

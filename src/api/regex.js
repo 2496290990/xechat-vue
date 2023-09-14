@@ -1,15 +1,5 @@
 import { isBlank, isNotBlank } from "@/util/str";
 
-export function cmdHandler(content, that) {
-    if(content.startsWith('#')) {
-        if(content.startsWith('#login')) {
-            getlogin(content)
-        }
-    } else {
-        console.log(content, that);
-    }
-}
-
 export function getlogin(content) {
     // // 定义正则表达式
     // // const regex = /#login\s+(\w+)\s+-s\s+(\d+)\s+-h\s+(\w+)\s+-p\s+(\d+)/;
