@@ -42,7 +42,7 @@ import 'bytemd/dist/index.min.css'
 const plugins = [gfm(), gemoji()];
 import { helpMd, serverList,getSysTitle } from '@/api/helpMd'
 import { getlogin } from '@/api/regex'
-import {isNotBlank} from '@/util/str'
+import {isBlank, isNotBlank} from '@/util/str'
 import { chatJson, loginJson, addNewLine } from '@/api/msgHandler'
 
 export default {
@@ -134,9 +134,7 @@ export default {
                 this.wsUrl = loginData.url
                 this.username = loginData.username
                 this.imagePath = loginData.imagePath
-                this.connect()
-                console.log(this.socket);
-                this.doLogin()
+                this.connect(this.username)
                 return
             }
             if (inputMsg.startsWith('#help')) {
@@ -166,14 +164,12 @@ export default {
             const date = new Date()
             return date.toLocaleDateString()
         },
-        connect() {
+        connect(username) {
             this.socket = new WebSocket(this.wsUrl);
             const that = this
             this.socket.onopen = function() {
                 that.msg += addNewLine('**WebSocket Connect Success!**')
-                if(isNotBlank(this.username)) {
-                    that.doLogin()
-                }
+                that.doLogin(username)
             }
             this.socket.onmessage = function(event) {
                 console.log(event);
@@ -183,12 +179,11 @@ export default {
                 that.msg += addNewLine('**WebSocket Closed!**')
             }
         },
-        doLogin() {
-            // eslint-disable-next-line no-debugger
-            debugger
+        doLogin(username) {
+            let loginName = isBlank(username) ? this.username : username;
             if(this.checkStatus()) {
                 this.heartBeat();
-                this.sendMsg(loginJson(this.username));
+                this.sendMsg(loginJson(loginName));
             }
         },
         doChat() {
