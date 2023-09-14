@@ -27,6 +27,11 @@ export function getlogin(content) {
         data.errorMsg = '用户名不允许为空;'
         return data
     }
+
+    if(isBlank(server) && isBlank(host) && isBlank(port)) {
+        server = 0
+    }
+
     if (isNotBlank(server)) {
         const serverIndex = Number(server)
         console.log(`当前服务器地址为${serverIndex}`);
