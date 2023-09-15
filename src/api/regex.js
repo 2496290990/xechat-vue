@@ -109,3 +109,80 @@ export function getParam(params, param) {
     }
     return null;
 }
+
+/**
+ * 获取命令后紧跟着的数字参数 超过maxIndex的话默认返回maxIndex
+ * @param {string} content 
+ * @param {Number} maxIndex 
+ */
+export function getNumberParam(content, maxIndex) {
+    const params = content.split(' ')
+    if(params.length == 1) {
+        return 0
+    }
+    const param = params[1]
+    if(isNaN(param) || Number(param) < 0) {
+        return 0
+    }
+    if(Number(param) >= maxIndex) {
+        return maxIndex
+    }
+    return Number(param)
+}
+
+/**
+ * 获取展示用的字符串
+ * @param {string} content 
+ */
+export function getShowImgStr(content, imageList) {
+    let params = content.split(' ')
+    const data = {
+        indexes: [0],
+        blur: 0,
+        force: content.indexOf('-f') != -1,
+        zoom: 100,
+        errorMsg: ''
+    }
+
+    if (params.length == 1) {
+        if(imageList.length == 0 ) {
+            data.errorMsg = '暂无图片'
+        } else {
+            data.indexes = [imageList.length - 1]
+        }
+        return data
+    } 
+    // 到这一步params的长度肯定大于 2 
+    const indexes =  getParam(params, "-i")
+    const blur = getParam(params, '-b')
+    const zoom = getParam(params, '-z')
+    if (isNotBlank(zoom)) {
+        data.zoom = strToNumberRange(zoom, 0 , 100)
+    }
+    // 索引和模糊度都为空 直接去下标为1的当成index
+    // 展示多条图片的话用,隔开
+    if (isBlank(indexes) && isBlank(blur)) {
+        data.indexes = params[1].split(',')
+    }
+    if (isNotBlank(indexes)) {
+        data.indexes = indexes.split(',')
+    }
+    if (isNotBlank(blur)) {
+        if (isNaN(blur)) {
+            data.errorMsg = '模糊程度有误，仅支持 0 -10'
+        } else {
+            data.blur = strToNumberRange(blur, 0 , 10)
+        }
+    }
+    return data
+}
+/**
+ * 
+ * @param {string} str 
+ * @param {Number} min 
+ * @param {Number} max 
+ * @returns Number 将字符串转换成一个 [min,max]区间的数
+ */
+export function strToNumberRange(str, min, max) {
+    return Math.max(min, Math.min(max, Number(str)))
+}
