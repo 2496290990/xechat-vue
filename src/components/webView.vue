@@ -47,8 +47,8 @@ import zhHans from 'bytemd/lib/locales/zh_Hans.json'
 import 'bytemd/dist/index.min.css'
 
 const plugins = [gfm(), gemoji()];
-import { helpMd, serverList, getSysTitle } from '@/api/helpMd'
-import { getlogin, getNumberParam, getShowImgStr } from '@/api/regex'
+import { helpMd, serverList, getSysTitle, cmdTips } from '@/api/helpMd'
+import { getlogin, getNumberParam, getShowImgStr,getMask } from '@/api/regex'
 import { isBlank, isNotBlank } from '@/util/str'
 import { chatJson, loginJson, addNewLine } from '@/api/msgHandler'
 import { generateSSQ, generateDLT } from '@/api/random'
@@ -77,7 +77,13 @@ export default {
             mdEditor: 'bytemd',
             mdEditorList: ['bytemd','vMdEditor'],
             // 图片模糊程度
-            blur: 0
+            blur: 0,
+            // 屏蔽列表
+            mask: {
+                maskUserList: [],
+                maskIpList: [],
+                maskMacList: []
+            }
         }
     },
     created() {
@@ -92,10 +98,12 @@ export default {
             }
             if (newVal.startsWith('#')) {
                 this.showTooltip = true
+                this.hintList = cmdTips(newVal)
                 return
             }
             if (newVal.indexOf('@') != -1 ){
                 this.showTooltip = true
+                this.hintList = this.onlineUsers.filter(item => item.startsWith(newVal.substr(1)))
                 return
             }
         }
@@ -231,8 +239,6 @@ export default {
                 this.imageList = []
                 this.msg += addNewLine('图片列表已清空')
             }
-            // eslint-disable-next-line no-debugger
-            debugger
             // 随机双色球
             if (inputMsg.startsWith('#showSSQ')) {
                 let params = inputMsg.split(' ')
@@ -284,7 +290,23 @@ export default {
                 this.msg += addNewLine(`当前markdown编辑器已切换 ::: ${this.mdEditor}`)
                 return
             }
+            // 屏蔽消息 
+            if (inputMsg.startsWith('#mask')) {
+                const data = getMask(inputMsg)
+                if(isNotBlank(data.errorMsg)) {
+                    this.msg += addNewLine(data.errorMsg)
+                    return
+                }
+                this.mask.maskUserList.push(...data.maskUserList)
+                this.mask.maskIpList.push(...data.maskIpList)
+                this.mask.maskMacList.push(...data.maskMacList)
+            }
+            // 解除屏蔽
+            if (inputMsg.startsWith('#unmask') ) {
+                // 解除屏蔽
+            }
         },
+        
         // 展示系统消息
         showSysMsg() {
             this.msg += getSysTitle('系统消息')
@@ -354,6 +376,11 @@ export default {
             }
 
         },
+        isMask(user) {
+          return this.mask.maskUserList.indexOf(user.user) != -1 ||
+            this.mask.maskIpList.indexOf(user.ip) != -1 ||
+            this.mask.maskMacList.indexOf(user.uuid) != -1  
+        },
         // 处理单条消息
         singletonMsg(data) {
             if (data.type == 'SYSTEM') {
@@ -363,6 +390,9 @@ export default {
             if (data.type == 'USER') {
                 const body = data.body
                 let content = body.content
+                if(this.isMask(body.user)) {
+                    this.msg += addNewLine(`**** 用户消息已屏蔽 ****`)
+                }
                 if (body.msgType == 'IMAGE') {
                     const imageUrl = `${this.imagePath}${content}`
                     this.imageList.push(imageUrl)
@@ -413,7 +443,11 @@ export default {
 .viewer {
     text-align: left;
 }
-
+.hint-list-container {
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+}
 .highlighted {
     background-color: yellow;
 }

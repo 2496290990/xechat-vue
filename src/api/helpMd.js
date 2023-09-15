@@ -19,8 +19,9 @@ export function helpMd() {
 | 5   | #help       | 帮助               | √   ||
 | 6  |#showSSQ|随机双色球|√|#showSSQ {生成数量}(不输入默认1个)|
 | 7 |#showDLT|随机大乐透|√|#showDLT {随机数量}(不输入默认1个)|
-| 8 |#showImage|展示图片|√|#showImage {下标|last}(last或者不输入为最后一张图片)|
+| 8 |#showImage|展示图片|√|#showImage {下标 多个用,隔开}<br/> #showImage -i {图片下标，多个用,隔开} -z {缩放比例 0-100默认100} -b {模糊程度 0-10} -f (强制切换v-md-editor展示图片) |
 | 9 |#cleanImage|清空图片|√|#cleanImage| 
+| 10 |#changeEditor|切换markdown编辑器|√|#changeEditor {编号 0\\|1} 0 byteMd 掘金同款 1 v-md-editor 支持文字颜色展示和图片缩放模糊| 
 
 - 暂未实现的命令
 
@@ -74,10 +75,22 @@ export function getSysTitle(nickname) {
     `
 }
 
-export function cmdTips() {
-    const hintTips = [
-        "#login {昵称}[-s {鱼塘编号 } -h {服务端IP} -p {服务端端口} -c (清理缓存) "
+export function cmdTips(cmdStr) {
+    let hintTips = [
+        "#admin 管控",
+        "#exit 退出登录",
+        "#clean 清屏",
+        "#cleanImage 清空图片缓存",
+        "#login {昵称}[-s {鱼塘编号 } -h {服务端IP} -p {服务端端口} -c (清理缓存) ",
+        "#showServer [-c（清理缓存)]  查看服务器列表",
+        "#showStatus 可用状态",
+        "#setStatus {状态值} 设置状态",
+        "#showSSQ {数量 0-10 非必填} 随机生成双色球 ",
+        "#showDLT {数量 0-10 非必填} 随机生成大乐透 ",
+        "#showImag (-i) {图片下标，多个用,隔开} -z {缩放比例 0-100默认100} -b {模糊程度 0-10} -f (强制切换v-md-editor展示图片)",
+        "#hlep 帮助文档"
     ]
+    hintTips = hintTips.filter(item => item.indexOf(cmdStr) != -1)
     return hintTips;
 }
 

@@ -186,3 +186,34 @@ export function getShowImgStr(content, imageList) {
 export function strToNumberRange(str, min, max) {
     return Math.max(min, Math.min(max, Number(str)))
 }
+
+export function getMask(content,) {
+    const params = content.split(' ')
+    const data = {
+        errorMsg: '',
+        maskUserList: [],
+        maskIpList: [],
+        maskMacList: []
+    }
+    if(params.length == 1) {
+        data.errorMsg = '缺失封禁的参数'
+    }
+    const maskUser = getParam(params, '-u')
+    const maskIp = getParam(params, '-h')
+    const maskMac = getParam(params, '-m')
+    
+    if (isNotBlank(maskUser)) {
+        data.maskUserList.push(maskUser)
+    }
+    if (isNotBlank(maskIp)) {
+        data.maskIpList.push(maskIp)
+    }
+    if (isNotBlank(maskMac)) {
+        data.maskMacList.push(maskMac)
+    }
+    return data
+}
+
+export function unMask(content, maskList) {
+    console.log(content, maskList);
+}
