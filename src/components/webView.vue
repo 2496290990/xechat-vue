@@ -85,6 +85,7 @@ export default {
     },
     watch: {
         chatMsg(newVal) {
+            console.log(newVal.endsWith('\n'), 'inputMsg endsWith \\n');
             if (newVal.indexOf(' ') != -1) {
                 this.showTooltip = false
                 return
@@ -230,6 +231,8 @@ export default {
                 this.imageList = []
                 this.msg += addNewLine('图片列表已清空')
             }
+            // eslint-disable-next-line no-debugger
+            debugger
             // 随机双色球
             if (inputMsg.startsWith('#showSSQ')) {
                 let params = inputMsg.split(' ')
@@ -241,7 +244,7 @@ export default {
                     if (isNaN(numStr)) {
                         cycle = 1
                     } else {
-                        cycle = Number(numStr)
+                        cycle = Math.max(1, Number(numStr))
                     }
                 }
                 for (let i = 1; i <= cycle; i++) {
@@ -263,7 +266,7 @@ export default {
                     if (isNaN(numStr)) {
                         cycle = 1
                     } else {
-                        cycle = Number(numStr)
+                        cycle = Math.max(1, Number(numStr))
                     }
                 }
                 for (let i = 1; i <= cycle; i++) {
