@@ -149,7 +149,6 @@ export default {
             if (inputMsg.startsWith('#')) {
                 this.commandHandler(inputMsg)
             } else {
-                this.msg += addNewLine(inputMsg)
                 this.sendMsg(chatJson(inputMsg))
             }
         },
@@ -300,6 +299,9 @@ export default {
                 this.mask.maskUserList.push(...data.maskUserList)
                 this.mask.maskIpList.push(...data.maskIpList)
                 this.mask.maskMacList.push(...data.maskMacList)
+                this.msg += addNewLine(`当前屏蔽用户 ${this.mask.maskUserList}`)
+                this.msg += addNewLine(`当前屏蔽IP ${this.mask.maskIpList}`)
+                this.msg += addNewLine(`当前屏蔽MAC ${this.mask.maskMacList}`)
             }
             // 解除屏蔽
             if (inputMsg.startsWith('#unmask') ) {
@@ -377,7 +379,7 @@ export default {
 
         },
         isMask(user) {
-          return this.mask.maskUserList.indexOf(user.user) != -1 ||
+          return this.mask.maskUserList.indexOf(user.username) != -1 ||
             this.mask.maskIpList.indexOf(user.ip) != -1 ||
             this.mask.maskMacList.indexOf(user.uuid) != -1  
         },
@@ -390,8 +392,11 @@ export default {
             if (data.type == 'USER') {
                 const body = data.body
                 let content = body.content
-                if(this.isMask(body.user)) {
-                    this.msg += addNewLine(`**** 用户消息已屏蔽 ****`)
+                // eslint-disable-next-line no-debugger
+                debugger
+                if(this.isMask(data.user)) {
+                    this.msg += addNewLine(`**** 用户消息已屏蔽 **** <font color=red>遥遥领先！</font>`)
+                    return 
                 }
                 if (body.msgType == 'IMAGE') {
                     const imageUrl = `${this.imagePath}${content}`
